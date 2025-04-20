@@ -301,5 +301,13 @@ Module.register("weather", {
 				}
 			}.bind(this)
 		);
+
+		this.nunjucksEnvironment().addFilter(
+			"capitalise",
+			function (str) {
+				if (typeof str !== "string") return str;
+				return str.charAt(0).toUpperCase() + str.slice(1);
+			}
+		);
 	}
 });
