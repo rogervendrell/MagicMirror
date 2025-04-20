@@ -31,15 +31,15 @@ Module.register("clock", {
 		lon: -122.344147
 	},
 	// Define required scripts.
-	getScripts () {
+	getScripts() {
 		return ["moment.js", "moment-timezone.js", "suncalc.js"];
 	},
 	// Define styles.
-	getStyles () {
+	getStyles() {
 		return ["clock_styles.css"];
 	},
 	// Define start sequence.
-	start () {
+	start() {
 		Log.info(`Starting module: ${this.name}`);
 
 		// Schedule update interval.
@@ -85,10 +85,10 @@ Module.register("clock", {
 		setTimeout(notificationTimer, delayCalculator(this.second));
 
 		// Set locale.
-		moment.locale(config.language);
+		moment.locale("oc");
 	},
 	// Override dom generator.
-	getDom () {
+	getDom() {
 		const wrapper = document.createElement("div");
 		wrapper.classList.add("clock-grid");
 
@@ -124,7 +124,7 @@ Module.register("clock", {
 		// So we need to generate the timestring manually.
 		// See issue: https://github.com/MagicMirrorOrg/MagicMirror/issues/181
 		let timeString;
-		const now = moment();
+		const now = moment().locale("oc-lnc");
 		if (this.config.timezone) {
 			now.tz(this.config.timezone);
 		}
@@ -141,7 +141,9 @@ Module.register("clock", {
 		}
 
 		if (this.config.showDate) {
-			dateWrapper.innerHTML = now.format(this.config.dateFormat);
+			let formattedDate = now.format(this.config.dateFormat);
+			// Make first letter uppercase
+			dateWrapper.innerHTML = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 			digitalWrapper.appendChild(dateWrapper);
 		}
 
