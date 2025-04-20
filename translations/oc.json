@@ -1,0 +1,49 @@
+{
+	"LOADING": "Carregant…",
+
+	"YESTERDAY": "Ièr",
+	"TODAY": "Uèi",
+	"TOMORROW": "Deman",
+	"DAYAFTERTOMORROW": "Deman passat",
+	"RUNNING": "S'acaba dins",
+	"EMPTY": "I a pas cap d'eveniment previst.",
+	"WEEK": "Setmana",
+
+	"N": "N",
+	"NNE": "NNE",
+	"NE": "NE",
+	"ENE": "ENE",
+	"E": "E",
+	"ESE": "ESE",
+	"SE": "SE",
+	"SSE": "SSE",
+	"S": "S",
+	"SSW": "SSO",
+	"SW": "SO",
+	"WSW": "OSO",
+	"W": "O",
+	"WNW": "ONO",
+	"NW": "NO",
+	"NNW": "NNO",
+
+	"FEELS": "Sensacion de {DEGREE}",
+	"PRECIP_POP": "Prob. de pluèja",
+	"PRECIP_AMOUNT": "Quantitat de precipitacions",
+  
+	"MODULE_CONFIG_CHANGED": "Los paramètres del modul {MODULE_NAME} an cambiat.\nConsultatz la documentacion.",
+	"MODULE_CONFIG_ERROR": "Error dins lo modul {MODULE_NAME}. {ERROR}",
+	"MODULE_ERROR_MALFORMED_URL": "URL mal format.",
+	"MODULE_ERROR_NO_CONNECTION": "Pas cap de connexion a Internet.",
+	"MODULE_ERROR_UNAUTHORIZED": "Autorizacion fracassada.",
+	"MODULE_ERROR_UNSPECIFIED": "Consultatz los jornals per mai de detalhs.",
+  
+	"NEWSFEED_NO_ITEMS": "Pas cap de novèla pel moment.",
+  
+	"UPDATE_NOTIFICATION": "Una actualizacion de MagicMirror² es disponibla.",
+	"UPDATE_NOTIFICATION_MODULE": "Una actualizacion es disponibla pel modul {MODULE_NAME}.",
+	"UPDATE_INFO_SINGLE": "Vòstra installacion actuala es {COMMIT_COUNT} commit en retard sus la branca {BRANCH_NAME}.",
+	"UPDATE_INFO_MULTIPLE": "Vòstra installacion actuala es {COMMIT_COUNT} commits en retard sus la branca {BRANCH_NAME}.",
+	"UPDATE_NOTIFICATION_DONE": "Actualizacion acabada pel modul {MODULE_NAME}",
+	"UPDATE_NOTIFICATION_ERROR": "Error d'actualizacion pel modul {MODULE_NAME}",
+	"UPDATE_NOTIFICATION_NEED-RESTART": "Cal reaviar MagicMirror."
+}

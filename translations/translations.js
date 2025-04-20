@@ -42,7 +42,8 @@ let translations = {
 	gu: "translations/gu.json", // Gujarati
 	gl: "translations/gl.json", // Galego
 	lt: "translations/lt.json", // Lithuanian
-	th: "translations/th.json" // Thai
+	th: "translations/th.json", // Thai
+	oc: "translations/oc.json" // Occitan
 };
 
 if (typeof module !== "undefined") {
