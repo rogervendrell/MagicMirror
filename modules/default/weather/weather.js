@@ -4,7 +4,7 @@ Module.register("weather", {
 	// Default module config.
 	defaults: {
 		weatherProvider: "openweathermap",
-		roundTemp: false,
+		roundTemp: true,
 		type: "current", // current, forecast, daily (equivalent to forecast), hourly (only with OpenWeatherMap /onecall endpoint)
 		lang: config.language,
 		units: config.units,
@@ -28,8 +28,8 @@ Module.register("weather", {
 		showWindDirectionAsArrow: false,
 		degreeLabel: false,
 		decimalSymbol: ".",
-		maxNumberOfDays: 5,
-		maxEntries: 5,
+		maxNumberOfDays: 7,
+		maxEntries: 7,
 		ignoreToday: false,
 		fade: true,
 		fadePoint: 0.25, // Start on 1/4th of the list.
@@ -50,17 +50,17 @@ Module.register("weather", {
 	firstEvent: null,
 
 	// Define required scripts.
-	getStyles () {
+	getStyles() {
 		return ["font-awesome.css", "weather-icons.css", "weather.css"];
 	},
 
 	// Return the scripts that are necessary for the weather module.
-	getScripts () {
+	getScripts() {
 		return ["moment.js", "weatherutils.js", "weatherobject.js", this.file("providers/overrideWrapper.js"), "weatherprovider.js", "suncalc.js", this.file(`providers/${this.config.weatherProvider.toLowerCase()}.js`)];
 	},
 
 	// Override getHeader method.
-	getHeader () {
+	getHeader() {
 		if (this.config.appendLocationNameToHeader && this.weatherProvider) {
 			if (this.data.header) return `${this.data.header} ${this.weatherProvider.fetchedLocation()}`;
 			else return this.weatherProvider.fetchedLocation();
@@ -70,8 +70,9 @@ Module.register("weather", {
 	},
 
 	// Start the weather module.
-	start () {
-		moment.locale(this.config.lang);
+	start() {
+		// moment.locale(this.config.lang);
+		moment.locale("oc-lnc");
 
 		if (this.config.useKmh) {
 			Log.warn("Your are using the deprecated config values 'useKmh'. Please switch to windUnits!");
@@ -99,7 +100,7 @@ Module.register("weather", {
 	},
 
 	// Override notification handler.
-	notificationReceived (notification, payload, sender) {
+	notificationReceived(notification, payload, sender) {
 		if (notification === "CALENDAR_EVENTS") {
 			const senderClasses = sender.data.classes.toLowerCase().split(" ");
 			if (senderClasses.indexOf(this.config.calendarClass.toLowerCase()) !== -1) {
@@ -124,7 +125,7 @@ Module.register("weather", {
 	},
 
 	// Select the template depending on the display type.
-	getTemplate () {
+	getTemplate() {
 		switch (this.config.type.toLowerCase()) {
 			case "current":
 				return "current.njk";
@@ -140,7 +141,7 @@ Module.register("weather", {
 	},
 
 	// Add all the data to the template.
-	getTemplateData () {
+	getTemplateData() {
 		const currentData = this.weatherProvider.currentWeather();
 		const forecastData = this.weatherProvider.weatherForecast();
 
@@ -160,7 +161,7 @@ Module.register("weather", {
 	},
 
 	// What to do when the weather provider has new information available?
-	updateAvailable () {
+	updateAvailable() {
 		Log.log("New weather information available.");
 		this.updateDom(0);
 		this.scheduleUpdate();
@@ -186,7 +187,7 @@ Module.register("weather", {
 		this.sendNotification("WEATHER_UPDATED", notificationPayload);
 	},
 
-	scheduleUpdate (delay = null) {
+	scheduleUpdate(delay = null) {
 		let nextLoad = this.config.updateInterval;
 		if (delay !== null && delay >= 0) {
 			nextLoad = delay;
@@ -210,13 +211,13 @@ Module.register("weather", {
 		}, nextLoad);
 	},
 
-	roundValue (temperature) {
+	roundValue(temperature) {
 		const decimals = this.config.roundTemp ? 0 : 1;
 		const roundValue = parseFloat(temperature).toFixed(decimals);
 		return roundValue === "-0" ? 0 : roundValue;
 	},
 
-	addFilters () {
+	addFilters() {
 		this.nunjucksEnvironment().addFilter(
 			"formatTime",
 			function (date) {
